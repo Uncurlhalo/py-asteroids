@@ -1,6 +1,7 @@
 import circleshape
 import constants
 import pygame
+import shot
 
 # Player class that inherits from CircleShape
 class Player(circleshape.CircleShape):
@@ -24,18 +25,23 @@ class Player(circleshape.CircleShape):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * constants.PLAYER_SPEED * dt
 
+    def shoot(self):
+        my_shot = shot.Shot(self.position.x, self.position.y)
+        my_shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * constants.PLAYER_SHOOT_SPEED
+
     # detect key presses and update
     def update(self, dt):
         keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_a]:
+        if keys[pygame.K_a, pygame.K_RIGHT]:
             self.rotate(-dt)
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d, pygame.K_LEFT]:
             self.rotate(dt)
-        if keys[pygame.K_w]:
+        if keys[pygame.K_w, pygame.K_UP]:
             self.move(dt)
-        if keys[pygame.K_s]:
+        if keys[pygame.K_s, pygame.K_DOWN]:
             self.move(-dt)
+        if keys[pygame.K_SPACE]:
+            self.shoot()
     
     # give us the coordinates of our triangle
     def triangle(self):
