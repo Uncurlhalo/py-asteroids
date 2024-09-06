@@ -17,7 +17,7 @@ def main():
     # make my groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    asteroids = pygame.scrap.Group()
+    asteroids = pygame.sprite.Group()
 
     # add player container to the groups
     player.Player.containers = (updatable, drawable)
@@ -26,7 +26,7 @@ def main():
     my_player = player.Player(x_spawn, y_spawn)
 
     # add asteroid container to groups
-    asteroid.Asteroid.containers = (asteroids, updatable, drawable))
+    asteroid.Asteroid.containers = (asteroids, updatable, drawable)
     # add asteroid FIELD container to just updatable
     asteroidfield.AsteroidField.containers = updatable
 
