@@ -4,6 +4,8 @@ SCREEN_HEIGHT = 720
 
 # player details
 PLAYER_RADIUS = 20
+PLAYER_TURN_SPEED = 300
+PLAYER_SPEED = 200
 
 # asteroid details
 ASTEROID_MIN_RADIUS = 20
