@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import pygame
 import player
+import asteroid
+import asteroidfield
 from constants import *
 
 def main():
@@ -15,12 +17,21 @@ def main():
     # make my groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.scrap.Group()
 
     # add player container to the groups
     player.Player.containers = (updatable, drawable)
     # make my player
     x_spawn, y_spawn = SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2
     my_player = player.Player(x_spawn, y_spawn)
+
+    # add asteroid container to groups
+    asteroid.Asteroid.containers = (asteroids, updatable, drawable))
+    # add asteroid FIELD container to just updatable
+    asteroidfield.AsteroidField.containers = updatable
+
+    # create an asteroid field
+    my_asteroid_field = asteroidfield.AsteroidField()
 
     # Event loop
     while True:
