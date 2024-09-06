@@ -12,7 +12,13 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    # make a player
+    # make my groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # add player container to the groups
+    player.Player.containers = (updatable, drawable)
+    # make my player
     x_spawn, y_spawn = SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2
     my_player = player.Player(x_spawn, y_spawn)
 
@@ -23,10 +29,17 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        # fill with black, update rotation, draw player
+        # update objects
+        for obj in updatable:
+            obj.update(dt)
+
+        # fill display with black
         screen.fill("black")
-        my_player.update(dt)
-        my_player.draw(screen)
+
+        # draw objects
+        for obj in drawable:
+            obj.draw(screen)
+        
         # update display
         pygame.display.flip()
 
