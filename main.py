@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import pygame
+import player
 from constants import *
 
 def main():
@@ -11,6 +12,10 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # make a player
+    x_spawn, y_spawn = SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2
+    my_player = player.Player(x_spawn, y_spawn)
+
     # Event loop
     while True:
         # Check for QUIT events
@@ -19,12 +24,14 @@ def main():
                 return
         
         # fill display with black and update
-        screen.fill((0,0,0))
+        screen.fill("black")
+        # draw our player
+        my_player.draw(screen)
+        # update display
         pygame.display.flip()
 
         # tick the clock and save to delta 
         dt = clock.tick(60) / 1000
-        print(dt)
 
 if __name__ == "__main__":
     main()

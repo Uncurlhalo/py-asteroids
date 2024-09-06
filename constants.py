@@ -1,6 +1,11 @@
+# screen details
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
+# player details
+PLAYER_RADIUS = 20
+
+# asteroid details
 ASTEROID_MIN_RADIUS = 20
 ASTEROID_KINDS = 3
 ASTEROID_SPAWN_RATE = 0.8  # seconds
