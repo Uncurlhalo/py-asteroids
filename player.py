@@ -27,9 +27,12 @@ class Player(circleshape.CircleShape):
         self.position += forward * constants.PLAYER_SPEED * dt
 
     def shoot(self):
+        if self.cooldown > 0:
+            return
+        self.cooldown = constants.PLAYER_SHOOT_COOLDOWN
         my_shot = shot.Shot(self.position.x, self.position.y)
         my_shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * constants.PLAYER_SHOOT_SPEED
-        self.cooldown = constants.PLAYER_SHOOT_COOLDOWN
+        
 
     # detect key presses and update
     def update(self, dt):
@@ -44,8 +47,7 @@ class Player(circleshape.CircleShape):
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
             self.move(-dt)
         if keys[pygame.K_SPACE]:
-            if not self.cooldown > 0:
-                self.shoot()
+            self.shoot()
     
     # give us the coordinates of our triangle
     def triangle(self):
